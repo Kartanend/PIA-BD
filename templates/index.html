@@ -1,5 +1,35 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h2>Wenas noshes</h2>
+    <table class="table table-hover">
+        <caption>
+            Libros
+        </caption>
+        <thead class="table-primary">
+            <tr>
+                <td>Libro</td>
+                <td class="text-center">Edición</td>
+                <td>Género</td>
+                <td>Editorial</td>
+                <td>ISBN</td>
+                <td class="text-center">Disponibles</td>
+                <td class="text-center">Rentados</td>
+                <td class="text-center">Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in librosAzar %}
+                <tr>
+                    <td>{{libro.1}}</td>
+                    <td class="text-center">{{libro.2}}</td>
+                    <td>{{libro.3}}</td>
+                    <td>{{libro.4}}</td>
+                    <td>{{libro.5}}</td>
+                    <td class="text-center">{{libro.6}}</td>
+                    <td class="text-center">{{libro.7}}</td>
+                    <td class="text-center">{{libro.8}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <table class="table table-hover">
+        <caption>
+            Libros
+        </caption>
+        <thead class="table-primary">
+            <tr>
+                <td>Miembro</td>
+                <td class="text-center">Libro</td>
+                <td>Fecha de entregra</td>
+                <td>Fecha estimada de devolución</td>
+                <td>Fecha de devolución</td>
+                <td class="text-center">Total</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for renta in rentas %}
+                <tr>
+                    <td>{{renta.1}}</td>
+                    <td>{{renta.2}}</td>
+                    <td>{{renta.3}}</td>
+                    <td>{{renta.4}}</td>
+                    <td>{{renta.5}}</td>
+                    <td>${{renta.6}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -45,6 +45,55 @@ class BASEDATOS:
         except:
             pass
 
+    def obtenerLibros(self):
+        self.cursor.execute("EXEC obtener_Libros")
+        libros = self.cursor.fetchall()
+        return libros
+
+    def obtenerMiembros(self):
+        self.cursor.execute("EXEC obtener_Miembros")
+        miembros = self.cursor.fetchall()
+        for i in range(0, len(miembros)):
+            miembro = list(miembros[i])
+            miembro[1] = f"{miembros[i][1]} {miembros[i][2]} {miembros[i][3]}"
+
+            miembro.pop(2)
+            miembro.pop(2)
+            miembros[i] = miembro.copy()
+
+        return miembros
+
+    def obtenerLibrosAzar(self):
+        self.cursor.execute("EXEC obtener_10_Libros_Random")
+        libros = self.cursor.fetchall()
+        return libros
+
+    def obtenerRentas(self):
+        self.cursor.execute("EXEC obtener_Rentas")
+        rentas = self.cursor.fetchall()
+        for i in range(0, len(rentas)):
+            renta = list(rentas[i])
+            renta[1] = f"{rentas[i][1]} {rentas[i][2]} {rentas[i][3]}"
+
+            renta.pop(2)
+            renta.pop(2)
+            rentas[i] = renta.copy()
+
+            return rentas
+
+    def obtenerRentasPasadas(self):
+        self.cursor.execute("EXEC obtener_Rentas_Pasadas")
+        rentas = self.cursor.fetchall()
+        for i in range(0, len(rentas)):
+            renta = list(rentas[i])
+            renta[1] = f"{rentas[i][1]} {rentas[i][2]} {rentas[i][3]}"
+
+            renta.pop(2)
+            renta.pop(2)
+            rentas[i] = renta.copy()
+
+            return rentas
+
     #Cierra conexión de la base de datos
     def close(self):
         self.connection.close()

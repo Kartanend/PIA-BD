@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <table class="table table-hover">
+        <caption>
+            Miembros
+        </caption>
+        <thead class="table-primary">
+            <tr>
+                <td>Nombre</td>
+                <td>Correo</td>
+                <td>Teléfono 1</td>
+                <td>Teléfono 2</td>
+                <td>Dirección</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for miembro in miembros %}
+                <tr>
+                    <td>{{miembro.1}}</td>
+                    <td class="">{{miembro.2}}</td>
+                    <td>{{miembro.3}}</td>
+                    <td>{{miembro.4}}</td>
+                    <td>{{miembro.5}}</td>
+                    <td class="">{{miembro.6}}</td>
+                    <td class="">{{miembro.7}}</td>
+                    <td class="">{{miembro.8}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
