@@ -36,8 +36,22 @@ def rentasPasadas():
 
 @app.route("/multas")
 def multas():
-    pass
+    datosMultas = conn.obtenerMultas()
+    return render_template("multas.html", multas = datosMultas)
     #CREAR PROCEDURE PARA MULTAS, MÉTODO PARA LA CONECCIÓN Y HTML
+
+@app.route("/multas_pasadas")
+def multasPasadas():
+    datosMultados = conn.obtenerMultasPasadas()
+    return render_template("multasPasadas.html", multas = datosMultados)
+
+@app.route("/libro/<int:id>")
+def libro(id):
+    datosLibro = conn.obtenerLibro(id)
+    return render_template("libro.html", libro = datosLibro)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="localhost", port="80")
+
+

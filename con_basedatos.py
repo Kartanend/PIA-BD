@@ -46,7 +46,7 @@ class BASEDATOS:
             pass
 
     def obtenerLibros(self):
-        self.cursor.execute("EXEC obtener_Libros")
+        self.cursor.execute(f"EXEC obtener_Libros")
         libros = self.cursor.fetchall()
         return libros
 
@@ -79,7 +79,7 @@ class BASEDATOS:
             renta.pop(2)
             rentas[i] = renta.copy()
 
-            return rentas
+        return rentas
 
     def obtenerRentasPasadas(self):
         self.cursor.execute("EXEC obtener_Rentas_Pasadas")
@@ -92,7 +92,39 @@ class BASEDATOS:
             renta.pop(2)
             rentas[i] = renta.copy()
 
-            return rentas
+        return rentas
+            
+    def obtenerMultas(self):
+        self.cursor.execute("EXEC obtener_Multas")
+        multas = self.cursor.fetchall()
+        for i in range(0,len(multas)):
+            multa = list(multas[i])
+            multa[1] = f"{multas[i][1]} {multas[i][2]} {multas[i][3]}"
+            
+            multa.pop(2)
+            multa.pop(2)
+            multas[i] = multa.copy()
+
+        return multas
+    
+    def obtenerMultasPasadas(self):
+        self.cursor.execute("EXEC obtener_Multas_Pasadas")
+        multas = self.cursor.fetchall()
+        for i in range(0, len(multas)):
+            multa = list(multas[i])
+            multa[1] = f"{multas[i][1]} {multas[i][2]} {multas[i][3]}"
+
+            multa.pop(2)
+            multa.pop(2)
+            multas[i] = multa.copy()
+
+        return multas
+
+    def obtenerLibro(self, id):
+        self.cursor.execute(f"EXEC obtener_libro {id}")
+        libro = self.cursor.fetchone()
+        return libro
+
 
     #Cierra conexión de la base de datos
     def close(self):
