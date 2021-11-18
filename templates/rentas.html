@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<a class="btn btn-primary btn-lg" href="/nuevo_movimiento">Registrar nuevo libro</a>
+
     <table class="table table-hover">
-        <caption>
-            Libros
-        </caption>
+        <caption></caption>
         <thead class="table-primary">
             <tr>
                 <td>Miembro</td>
@@ -12,6 +12,8 @@
                 <td>Fecha de entregra</td>
                 <td>Fecha estimada de devolución</td>
                 <td class="text-center">Total</td>
+                <td></td>
+                <td></td>
 
             </tr>
         </thead>
@@ -23,6 +25,8 @@
                     <td>{{renta.3}}</td>
                     <td>{{renta.4}}</td>
                     <td>${{renta.5}}</td>
+                    <td><a class="btn btn-primary btn-sm" href="/editarRenta/{{renta.0}}">Editar Renta</a></td>
+                    <td><a class="btn btn-primary btn-sm" href="/eliminarRenta/{{renta.0}}">Eliminar Renta</a></td>
                 </tr>
             {% endfor %}
         </tbody>

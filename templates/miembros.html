@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <a class="btn btn-primary btn-lg" href="/registro_miembro">Registrar nuevo miembro</a>
     <table class="table table-hover">
-        <caption>
-            Miembros
-        </caption>
+        <caption></caption>
         <thead class="table-primary">
             <tr>
                 <td>Nombre</td>
@@ -12,6 +11,10 @@
                 <td>Teléfono 1</td>
                 <td>Teléfono 2</td>
                 <td>Dirección</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +28,8 @@
                     <td class="">{{miembro.6}}</td>
                     <td class="">{{miembro.7}}</td>
                     <td class="">{{miembro.8}}</td>
+                    <td><a class="btn btn-primary btn-sm" href="/editarMiembro/{{miembro.0}}">Editar miembro</a></td>
+                    <td><a class="btn btn-primary btn-sm" href="/eliminarMiembro/{{miembro.0}}">Eliminar miembro</a></td>
                 </tr>
             {% endfor %}
         </tbody>

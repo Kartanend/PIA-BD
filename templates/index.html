@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <a class="btn btn-primary btn-lg" href="/registro_libro">Registrar nuevo libro</a>
     <table class="table table-hover">
-        <caption>
-            Libros
-        </caption>
+        <caption></caption>
         <thead class="table-primary">
             <tr>
                 <td>Libro</td>
@@ -20,7 +19,7 @@
         <tbody>
             {% for libro in librosAzar %}
                 <tr>
-                    <td>{{libro.1}}</td>
+                    <td><a href="/libro/{{libro.0}}">{{libro.1}}</a></td>
                     <td class="text-center">{{libro.2}}</td>
                     <td>{{libro.3}}</td>
                     <td>{{libro.4}}</td>
@@ -33,3 +32,4 @@
         </tbody>
     </table>
 {% endblock %}
+

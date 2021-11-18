@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="/actualizarMiembro" method="POST">
+  <input value="{{miembro.0}}" name="id" hidden>
+    <div class="card mb-3">
+        <div class="card-body width-50">
+          <h3 class="card-title">Nombre(s): <input value="{{miembro.1}}"  name="nombre" class="form-control" type="text" placeholder="Nombre" required></h3>
+          <h5 class="card-title">Apellido Paterno: 
+            <input value="{{miembro.2}}" name="apellidoP" width="50%" class="form-control" type="text" placeholder= "Apellido paterno" required>
+          </h5>
+          <h6 class="card-subtitle text-muted">Apellido Materno:  
+                <input value="{{miembro.3}}" name="apellidoM" width="50%" class="form-control" type="Text" placeholder= "Apellido materno" required>
+            </h6>
+          <p class="card-text">Correo: <input value="{{miembro.4}}" name="correo" class="form-control"  type ="email" placeholder= "Example@hotmail.com" required></p>
+        <h6 class="list-group list-group-flush">
+          <p class=" card-text">Telefono 1 <input value="{{miembro.5}}" name="tel1"  class="form-control" type="text" placeholder= "(xxx) xxx-xx-xx" required></p>
+          <p class="card-text">Telefono 2 <input value="{{miembro.6}}" name="tel2" class="form-control" type="text" placeholder="(xxx) xxx-xx-xx" ></p>
+          <p class="card-text">Dirección: <textarea name="direccion" class="form-control" type="text" placeholder= "Dirección"required>{{miembro.7}}</textarea></p>
+        </ul>
+        <br>
+        <button type="submit" class="btn btn-primary">Registrar Miembro</button>
+        </h6>
+      </div>
+    </div>
+</form>
+{% endblock %}x

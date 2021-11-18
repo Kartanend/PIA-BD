@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    
     <table class="table table-hover">
-        <caption>
-            Libros
-        </caption>
+        <caption></caption>
         <thead class="table-primary">
             <tr>
                 <td>Miembro</td>
                 <td class="text-center">Libro</td>
-                <td>Fecha de entregra</td>
-                <td>Fecha estimada de devolución</td>
-                <td>Fecha de devolución</td>
+                <td class="text-center">Fecha de entregra</td>
+                <td class="text-center">Fecha estimada de devolución</td>
+                <td class="text-center">Fecha de devolución</td>
+                <td class="text-center">Días de retraso</td>
                 <td class="text-center">Total</td>
 
             </tr>
@@ -21,10 +21,11 @@
                 <tr>
                     <td>{{multa.1}}</td>
                     <td>{{multa.2}}</td>
-                    <td>{{multa.3}}</td>
-                    <td>{{multa.4}}</td>
-                    <td>{{multa.5}}</td>
-                    <td>${{multa.6}}</td>
+                    <td class="text-center">{{multa.3}}</td>
+                    <td class="text-center">{{multa.4}}</td>
+                    <td class="text-center">{{multa.5}}</td>
+                    <td class="text-center">{{multa.6}}</td>
+                    <td>${{multa.7}}</td>
                 </tr>
             {% endfor %}
         </tbody>

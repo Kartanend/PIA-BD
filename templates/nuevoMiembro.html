@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<form action="/registroM" method="POST">
+    <div class="card mb-3">
+        <div class="card-body width-50">
+          <h3 class="card-title">Nombre(s): <input name="nombre" class="form-control" type="text" placeholder="Nombre" required></h3>
+          <h5 class="card-title">Apellido Paterno: 
+            <input name="apellidoP" width="50%" class="form-control" type="text" placeholder= "Apellido paterno" required>
+          </h5>
+          <h6 class="card-subtitle text-muted">Apellido Materno:  
+                <input name="apellidoM" width="50%" class="form-control" type="Text" placeholder= "Apellido materno" required>
+            </h6>
+          <p class="card-text">Correo: <input name="correo" class="form-control"  type ="email" placeholder= "Example@hotmail.com" required></p>
+        <h6 class="list-group list-group-flush">
+          <p class=" card-text">Telefono 1 <input name="tel1"  class="form-control" type="text" placeholder= "(xxx) xxx-xx-xx" required></p>
+          <p class="card-text">Telefono 2 <input name="tel2" class="form-control" type="text" placeholder="(xxx) xxx-xx-xx" ></p>
+          <p class="card-text">Dirección: <textarea name="direccion" class="form-control" type="text" placeholder= "Dirección"required></textarea></p>
+        </ul>
+        <br>
+        <button type="submit" class="btn btn-primary">Registrar Miembro</button>
+        </h6>
+      </div>
+    </div>
+</form>
+{% endblock %}x

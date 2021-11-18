@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% if libro %}
+<form action="/registroL" method="POST">
+    <div class="card mb-3 ">
+        <h3 class="card-header">Libro: <input value="{{libro.1}}" name="libro" class="form-control" type="text" required></h3>
+        <div class="card-body width-50">
+          <h5 class="card-title">Genero: 
+            <select value="{{libro.2}}" name="genero" width="50%" class="form-select" id="exampleSelect1" required>
+                    <option value="1">Narrativo</option>
+                    <option value="2">Lírico</option>
+                    <option value="3">Dramático</option>
+                    <option value="4">Didáctico</option>
+            </select>
+          </h5>
+          <h6 class="card-subtitle text-muted">SubGenero:  
+                <select value="{{libro.3}}" name="subgenero" width="50%" class="form-select" required>
+                    {% for subgenero in subgeneros %}
+                    <option value="{{subgenero.0}}">{{subgenero.1}}</option>
+                    {% endfor %}
+                </select>
+            </h6>
+            <label for="formFile" class="form-label mt-4">Cargar foto de portada:</label>
+            <input name="fotoPortada" class="form-control" type="file" id="formFile">
+          <p class="card-text">Resumen: <textarea name="resumen" class="form-control" id="exampleTextarea" rows="3" style="height: 148px;">{{libro.10}}</textarea></p>
+          <p class="card-text">Descripción: <textarea name="descripcion" class="form-control" id="exampleTextarea" rows="3" style="height: 148px;">{{libro.11}}</textarea></p>
+        <ul class="list-group list-group-flush">
+          <p class="card-text">ISBN: <input value="{{libro.8}}" name= "isbn" maxlength="15"  class="form-control" type="text" placeholder="Ejemplo	0-7645-2641-3 " required></p>
+          <p class="card-text">Editorial: 
+            <input name="editorial" width="50%" class="form-control"placeholder="Ej. Porrúa" required/>
+          </li>
+          <p class="card-text">Edición: <input value="{{libro.5}}" name= "edicion" class="form-control" type="text"placeholder="Número de Edición" required><br/> 
+            Fecha de Publicación: <input value= "{{libro.6}}" name="fechaPublicacion" class="form-control" placeholder= "Año/Mes/Día"  type="text" required></p>
+          <p class="card-text">Lugar de Publicación: <input value="{{libro.7}}" name="lugarPublicacion" class="form-control" type="text" placeholder= "Lugar de origen" required ></p>
+          <p class="card-text">Cantidad de libros: <input value="{{libro.14}}" name="disponibles" class="form-control" type="text" placeholder="Escribe la cantidad de libros en existencia" required></p>
+        </ul>
+        <br/>
+        <h6 class="list-group list-group-flush">
+          <button type="submit" class="btn btn-primary">Registrar libro</button>
+        </h6>
+      </div>
+</form>
+{% endif %}
+{% endblock %}
