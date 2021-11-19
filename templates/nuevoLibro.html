@@ -3,8 +3,9 @@
 {% block content %}
 <form action="/registroL" method="POST">
     <div class="card mb-3 ">
-        <h3 class="card-header">Libro: <input value="Libro fusufum" name="libro" class="form-control" type="text" required></h3>
+        <h3 class="card-header">Libro: <input placeholder="Libro del libro" name="libro" class="form-control" type="text" required></h3>
         <div class="card-body width-50">
+          <h4 class="">Autor: <input placeholder="Nombre del autor" name="autor" class="form-control" type="text" required></h4>
           <h5 class="card-title">Genero: 
             <select name="genero" width="50%" class="form-select" id="exampleSelect1" required>
                     <option value="1">Narrativo</option>

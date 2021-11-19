@@ -5,23 +5,24 @@
     <div class="card mb-3">
         <h3 class="card-header">Libro: {{libro.1}}</h3>
         <div class="card-body">
-          <h5 class="card-title">Genero: {{libro.2}}</h5>
-          <h6 class="card-subtitle text-muted">SubGenero: {{libro.3}}</h6>
+          <h4 class="">Autor: {{libro.2}}</h4>
+          <h5 class="card-title">Genero: {{libro.3}}</h5>
+          <h6 class="card-subtitle text-muted">SubGenero: {{libro.4}}</h6>
         </div>
         <div>
-        <img class="rounded mx-auto d-block" width="20%" src="{{ url_for('static', filename='portadas/'+libro[9]) }}"  />
+        <img class="rounded mx-auto d-block" width="20%" src="{{ url_for('static', filename='portadas/'+libro[10]) }}"  />
         </div>
         <div class="card-body">
-          <p class="card-text">Resumen: {{libro.10}}</p>
-          <p class="card-text">Descripción: {{libro.11}}</p>
+          <p class="card-text">Resumen: {{libro.11}}</p>
+          <p class="card-text">Descripción: {{libro.12}}</p>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">ISBN: {{libro.8}}</li>
-          <li class="list-group-item">Editorial: {{libro.4}}</li>
-          <li class="list-group-item">Edición: {{libro.5}}<br/> Fecha: {{libro.6}}</li>
-          <li class="list-group-item">Lugar de Publicación: {{libro.7}}</li>
-          <li class="list-group-item">Disponibles: {{libro.12}}</li>
-          <li class="list-group-item">Rentados: {{libro.13}}</li>  
-          <li class="list-group-item">Total libros: {{libro.14}}</li>
+          <li class="list-group-item">ISBN: {{libro.9}}</li>
+          <li class="list-group-item">Editorial: {{libro.5}}</li>
+          <li class="list-group-item">Edición: {{libro.6}}<br/> Fecha: {{libro.7}}</li>
+          <li class="list-group-item">Lugar de Publicación: {{libro.8}}</li>
+          <li class="list-group-item">Disponibles: {{libro.13}}</li>
+          <li class="list-group-item">Rentados: {{libro.14}}</li>  
+          <li class="list-group-item">Total libros: {{libro.15}}</li>
         </ul>
       </div>
     {% endif %}

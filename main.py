@@ -16,7 +16,7 @@ os.chdir("C:\\Users\\Diego\\Desktop\\PIA-BD")
 @app.route("/")
 def home():
     datosLibrosAzar = conn.obtenerLibrosAzar()
-    return render_template("index.html", librosAzar = datosLibrosAzar)
+    return render_template("index.html", librosAzar = datosLibrosAzar, titulo="Inicio")
 
 @app.route("/libros")
 def libros():
@@ -32,7 +32,7 @@ def miembros():
 
 @app.route("/editarMiembro/<int:id>")
 def editarMiembro(id):
-    datosMiembros = conn.obtenerMiembro(id)
+    datosMiembros = conn.obtenerMiembroDatos(id)
     return render_template("editarMiembro.html", miembro = datosMiembros)
 
 @app.route("/actualizarMiembro", methods= ["POST"])
@@ -102,9 +102,12 @@ def multasPasadas():
 @app.route("/libro/<int:id>")
 def libro(id):
     datosLibro = conn.obtenerLibro(id)
+    print(datosLibro)
+    if datosLibro[10] == "":
+        datosLibro[10] = "0.png"
+    elif not os.path.exists(os.getcwd() + url_for("static", filename="portadas/"+datosLibro[10] )):
+        datosLibro[10] = "0.png"
 
-    if not os.path.exists(os.getcwd() + url_for("static", filename="portadas/"+datosLibro[9] )):
-        datosLibro[9] = "0.png"
 
     return render_template("libro.html", libro = datosLibro)
 
@@ -118,6 +121,31 @@ def registroLibro():
 def registroBasedatosLibro():
     valores = list()
     valores.append(request.form["libro"])
+    valores.append(request.form["autor"])
+    valores.append(request.form["genero"])
+    valores.append(request.form["subgenero"])
+    valores.append(request.form["editorial"])
+    valores.append(request.form["edicion"])
+    valores.append(request.form["fechaPublicacion"])
+    valores.append(request.form["lugarPublicacion"])
+    valores.append(request.form["isbn"])
+    if request.form["fotoPortada"] == "":
+        valores.append("0.png")
+    else:
+        valores.append(request.form["fotoPortada"])
+    valores.append(request.form["resumen"])
+    valores.append(request.form["descripcion"])
+    valores.append(request.form["disponibles"])
+    valores.append(request.form["lugarPublicacion"])
+    valores.append(request.form["disponibles"])
+    conn.registrarLibro(valores)
+    return render_template("nuevoLibro.html")
+
+@app.route("/actualizarLibro", methods=["POST"])
+def actualizarLibro():
+    valores = list()
+    valores.append(request.form["libro"])
+    valores.append(request.form["autor"])
     valores.append(request.form["genero"])
     valores.append(request.form["subgenero"])
     valores.append(request.form["editorial"])
@@ -129,10 +157,14 @@ def registroBasedatosLibro():
     valores.append(request.form["resumen"])
     valores.append(request.form["descripcion"])
     valores.append(request.form["disponibles"])
-    valores.append(request.form["lugarPublicacion"])
-    valores.append(request.form["disponibles"])
-    conn.registrarLibro(valores)
-    return render_template("nuevoLibro.html")
+    valores.append(request.form["id"])
+    conn.actualizarLibro(valores)
+    return redirect("/libros")
+
+@app.route("/buscarLibro", methods=["POST"])
+def buscarLibro():
+    libros = conn.buscarLibro(request.form["libro"])
+    return render_template("libros.html", libros=libros)
 
 @app.route("/nuevo_movimiento")
 def nuevoMovimiento():
@@ -159,7 +191,7 @@ def editarRenta(id):
 @app.route("/eliminarRenta/<int:id>")
 def eliminarRenta(id):
     conn.eliminarRenta(id)
-    return redirect("rentados")
+    return redirect("/rentados")
 
 @app.route("/actualizarRentas", methods= ["POST"])
 def ActualizarRenta():
@@ -171,12 +203,28 @@ def ActualizarRenta():
     valores.append(request.form["fechaEntrega"])
     conn.actualizarRenta(valores)
 
-    return redirect("/rentados")  ##Checar 
+    return redirect("/rentados") 
+
+@app.route("/devolverRenta/<int:id>")
+def devolverRenta(id):
+    conn.actualizarMultas()
+    conn.devolverRenta(id)
+    return redirect("/rentados")
     
 
 @app.route("/checar_multas")
 def checarMultas():
     conn.actualizarMultas()
+    return redirect("/multas")
+
+@app.route("/pagarMulta/<int:id>")
+def pagarMulta(id):
+    conn.pagarMulta(id)
+    return redirect("/multas")
+
+@app.route("/eliminarMulta/<int:id>")
+def eliminarMulta(id):
+    conn.eliminarMulta(id)
     return redirect("/multas")
 
 @app.route("/editarLibro/<int:id>")

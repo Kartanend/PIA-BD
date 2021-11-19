@@ -1,3 +1,4 @@
+from types import DynamicClassAttribute
 import pyodbc
 from werkzeug.utils import redirect
 from datetime import datetime
@@ -169,15 +170,21 @@ class BASEDATOS:
         libro = self.cursor.fetchone()
         return libro
 
+    def buscarLibro(self, nombre):
+        self.cursor.execute(f"EXEC buscar_Libros '{nombre}' ")
+        libros = self.cursor.fetchall()
+        return libros
+
     def obtenerSubgeneros(self):
         self.cursor.execute("EXEC obtener_subgeneros")
         subgeneros = self.cursor.fetchall()
         return subgeneros
 
     def registrarLibro(self, libro):
-        sql = f"""EXEC registrar_libro '{libro[0]}', {libro[1]}, {libro[2]}, {libro[3]}, 
-                {libro[4]}, '{libro[5]}', '{libro[6]}', '{libro[7]}', '{libro[8]}',
-                '{libro[9]}', '{libro[10]}', {libro[11]}, {libro[11]}, 0 """
+        sql = f"""EXEC registrar_libro '{libro[0]}', '{libro[1]}', {libro[2]}, {libro[3]}, 
+                '{libro[4]}', {libro[5]}, '{libro[6]}', '{libro[7]}', '{libro[8]}',
+                '{libro[9]}', '{libro[10]}', '{libro[11]}', {libro[12]}, {libro[12]}, 0 """
+        print(sql)
         self.cursor.execute(sql)
         self.cursor.commit()
 
@@ -240,6 +247,11 @@ class BASEDATOS:
         datos = miembro.copy()
         return datos
 
+    def obtenerMiembroDatos(self, id):
+        self.cursor.execute(f"EXEC obtener_Miembro {id}")
+        datos = self.cursor.fetchone()
+        return datos
+
     def actualizarRenta(self,renta):
         entrega = datetime.strptime(renta[3], "%Y-%m-%d")
         fechaEstimada = datetime.strptime(renta[4], "%Y-%m-%d")
@@ -255,7 +267,37 @@ class BASEDATOS:
         self.cursor.execute(f"EXEC eliminar_Renta {id}")
         self.cursor.commit()
 
+    def devolverRenta(self, id):
+        hoy = datetime.now()
+        fecha = hoy.strftime("%Y-%m-%d")
+        self.cursor.execute(f"EXEC devolver_Renta {id}, '{fecha}'")
+        self.cursor.commit()
 
+    def pagarMulta(self, id):
+        self.cursor.execute(f"EXEC obtener_Fecha_Estimada_Multa {id}")
+        recibo = self.cursor.fetchone()
+        fechaEtimada = datetime.strptime(recibo[1], "%Y-%m-%d")
+        fechaHoy = datetime.now()
+        dias = fechaHoy - fechaEtimada
+        dias = dias.days
+        sql = f"EXEC pagar_Multa {id}, {dias}"
+        fecha = fechaHoy.strftime("%Y-%m-%d")
+        print(sql)
+        self.cursor.execute(f"EXEC pagar_Multa {id}, '{fecha}', {dias}")
+        self.cursor.commit()
+
+    def eliminarMulta(self, id):
+        self.cursor.execute(f"EXEC eliminar_Multa {id}")
+        self.cursor.commit()
+
+    def actualizarLibro(self, libro):
+        print(libro)
+        sql = f"""EXEC actualizar_libro '{libro[0]}', '{libro[1]}', {libro[2]}, {libro[3]}, 
+                '{libro[4]}', {libro[5]}, '{libro[6]}', '{libro[7]}', '{libro[8]}',
+                '{libro[9]}', '{libro[10]}', '{libro[11]}', {libro[12]}, {libro[12]}, 0, {libro[-1]} """
+        print(sql)
+        self.cursor.execute(sql)
+        self.cursor.commit()
                 
     #Cierra conexión de la base de datos
     def close(self):

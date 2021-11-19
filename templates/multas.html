@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<a class="btn btn-primary btn-lg" href="/checar_multas">Checar por nuevas multas</a>
     <table class="table table-hover">
         <caption></caption>
         <thead class="table-primary">
@@ -12,6 +11,8 @@
                 <td class="text-center">Fecha de entrega</td>
                 <td class="text-center">Fecha estimada de devolución</td>
                 <td>Total multa</td>
+                <td></td>
+                <td></td>
 
             </tr>
         </thead>
@@ -24,6 +25,8 @@
                     <td class="text-center">{{multa.3}}</td>
                     <td class="text-center">{{multa.4}}</td>
                     <td>${{multa.5}}</td>
+                    <td><a class="btn btn-primary btn-sm" href="/pagarMulta/{{multa.0}}">Pagar multa</a></td>
+                    <td><a class="btn btn-danger btn-sm" href="/eliminarMulta/{{multa.0}}">Eliminar multa</a></td>
                 </tr>
             {% endfor %}
         </tbody>

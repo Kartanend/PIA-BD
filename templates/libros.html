@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <a class="btn btn-primary btn-lg" href="/registro_libro">Registrar nuevo libro</a>
     <table class="table table-hover">
         <caption></caption>
         <thead class="table-primary">
             <tr>
                 <td>Libro</td>
+                <td class="text-center">Autor</td>
                 <td class="text-center">Edición</td>
                 <td>Género</td>
                 <td>Editorial</td>
@@ -29,8 +29,9 @@
                     <td class="text-center">{{libro.6}}</td>
                     <td class="text-center">{{libro.7}}</td>
                     <td class="text-center">{{libro.8}}</td>
+                    <td class="text-center">{{libro.9}}</td>
                     <td><a class="btn btn-primary btn-sm" href="/editarLibro/{{libro.0}}">Editar Libro</a></td>
-                    <td><a class="btn btn-primary btn-sm" href="/eliminarLibro/{{libro.0}}">Eliminar Libro</a></td>
+                    <td><a class="btn btn-danger btn-sm" href="/eliminarLibro/{{libro.0}}">Eliminar Libro</a></td>
                 </tr>
                 
             {% endfor %}
