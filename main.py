@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 app.secret_key = 'ET\x1aU\xf5& 4\xdci\xc9\x06G\x1b\xfd-'
-server= "DRJAVA"
+server= "HP-Server"
 basedatos= "biblioteca"
 usuario= "biblioteca_user"
 contra = "password"

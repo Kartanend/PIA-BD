@@ -9,7 +9,7 @@ countries = [('US', 'United States'), ('AF', 'Afghanistan'), ('AL', 'Albania'), 
 colores = ['azul', 'rojo', 'verde', 'amarillo']
 
 #CONEXION BASE DE DATOS
-server= "DRJAVA"
+server= "HP-Server"
 basedatos= "biblioteca"
 usuario= "biblioteca_user"
 contra = "password"

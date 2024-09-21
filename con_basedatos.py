@@ -7,10 +7,6 @@ class BASEDATOS:
     #Metodo constructor, conecta a la base de datos
     def __init__(self, server, basedatos, usuario, contra):
         try:
-            # server= "DRJAVA"
-            # basedatos= "biblioteca"
-            # usuario= "biblioteca_user"
-            # contra = "password"
             self.cuotaPorDia = 50
             self.connection = pyodbc.connect(f"""DRIVER={{SQL Server}};
                                             SERVER={server};

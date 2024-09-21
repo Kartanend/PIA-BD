@@ -1,0 +1,6 @@
+projectKey=PIA-BD
+serverUrl=http://localhost:9000
+serverVersion=9.7.1.62043
+dashboardUrl=http://localhost:9000/dashboard?id=PIA-BD
+ceTaskId=AYSxlb7LAVzQYCfegyHC
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYSxlb7LAVzQYCfegyHC
