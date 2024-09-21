@@ -8,7 +8,7 @@ CREATE TABLE dbo.libro (
 	iIdSubGenero INT NOT NULL,
 	iIdEditorial INT NOT NULL,
 	tEdicion TINYINT NOT NULL,
-	dAñoEdicion DATE NOT NULL,
+	dAÃ±oEdicion DATE NOT NULL,
 	vLugarPublicacion varchar(255) NOT NULL,
 	vISBN varchar(13) UNIQUE NOT NULL,
 	vFotoPortada varchar(15) NOT NULL,
@@ -97,7 +97,7 @@ CREATE PROCEDURE registrar_libro
 	@subgenero INT,
 	@editorial VARCHAR(20),
 	@edicion TINYINT,
-	@año DATE,
+	@aÃ±o DATE,
 	@lugarPublicacion VARCHAR(255),
 	@ISBN VARCHAR(15),
 	@foto VARCHAR(15),
@@ -107,8 +107,8 @@ CREATE PROCEDURE registrar_libro
 	@disponible INT,
 	@rentado INT) 
 AS
-INSERT INTO dbo.libro (vLibro, vAutor, iIdGenero, iIdSubGenero, vEditorial, tEdicion, dAñoEdicion, vLugarPublicacion, vISBN, vFotoPortada, tResumen, tDescripcion, iTotal, iDisponible, iRentado, bExiste) 
-VALUES (@libro, @autor, @genero, @subgenero, @editorial, @edicion, @año, @lugarPublicacion, @ISBN, @foto, @resumen, @descripcion, @total, @disponible, @rentado, 1)
+INSERT INTO dbo.libro (vLibro, vAutor, iIdGenero, iIdSubGenero, vEditorial, tEdicion, dAÃ±oEdicion, vLugarPublicacion, vISBN, vFotoPortada, tResumen, tDescripcion, iTotal, iDisponible, iRentado, bExiste) 
+VALUES (@libro, @autor, @genero, @subgenero, @editorial, @edicion, @aÃ±o, @lugarPublicacion, @ISBN, @foto, @resumen, @descripcion, @total, @disponible, @rentado, 1)
 
 
 CREATE PROCEDURE actualizar_libro
@@ -118,7 +118,7 @@ CREATE PROCEDURE actualizar_libro
 	@subgenero INT,
 	@editorial VARCHAR(20),
 	@edicion TINYINT,
-	@año DATE,
+	@aÃ±o DATE,
 	@lugarPublicacion VARCHAR(255),
 	@ISBN VARCHAR(15),
 	@foto VARCHAR(15),
@@ -130,7 +130,7 @@ CREATE PROCEDURE actualizar_libro
 	@id INT) 
 AS
 UPDATE dbo.libro SET vLibro = @libro, vAutor=@autor, iIdGenero=@genero, iIdSubGenero=@subgenero, vEditorial=@editorial, 
-tEdicion=@edicion, dAñoEdicion=@año, vLugarPublicacion=@lugarPublicacion, vISBN=@ISBN, vFotoPortada=@foto,
+tEdicion=@edicion, dAÃ±oEdicion=@aÃ±o, vLugarPublicacion=@lugarPublicacion, vISBN=@ISBN, vFotoPortada=@foto,
 tResumen=@resumen, tDescripcion=@descripcion, iTotal=@total, iDisponible=@disponible, iRentado=@rentado WHERE iIdLibro =@id
 
 SELECT * FROM dbo.libro
@@ -138,9 +138,9 @@ SELECT * FROM dbo.libro
 EXEC actualizar_libro 'Everyday Maths', 'Melissa Haney Jones', 1, 1, 
                 'Routledge', 10, '1975-08-26', 'Turkey', '1741250439',
                 '', 'This book gives you a range of basic everyday maths tips, including: the maths of buying, selling and investing in property what your renovation will cost calculating the return from shares and short-term investments decoding your pay slip 
-and s uper contributions calculating GST costs smart shoppin g calculating percentages and discounts', 'Libro color verde, con bordes amarillo y con 197 páginas', 50, 50, 0, Turkey
+and s uper contributions calculating GST costs smart shoppin g calculating percentages and discounts', 'Libro color verde, con bordes amarillo y con 197 pÃ¡ginas', 50, 50, 0, Turkey
 
-ALTER TABLE dbo.libro DROP CONSTRAINT 
+ALTER TABLE dbo.libro DROP CONSTRAINT
 
 CREATE PROCEDURE obtener_Libros
 AS
@@ -278,7 +278,7 @@ SELECT iIdFolio FROM dbo.multa WHERE bExiste = 1
 CREATE PROCEDURE obtener_libro
 (@id INT)
 AS
-SELECT iIdLibro, vLibro, vAutor, dbo.genero.vGenero, dbo.subgenero.vSubgenero, vEditorial, tEdicion, dAñoEdicion, vLugarPublicacion, vISBN, vFotoPortada, tResumen, tDescripcion, iDisponible, iRentado, iTotal 
+SELECT iIdLibro, vLibro, vAutor, dbo.genero.vGenero, dbo.subgenero.vSubgenero, vEditorial, tEdicion, dAÃ±oEdicion, vLugarPublicacion, vISBN, vFotoPortada, tResumen, tDescripcion, iDisponible, iRentado, iTotal 
 FROM ((dbo.libro JOIN dbo.genero ON dbo.libro.iIdGenero = dbo.genero.iIdGenero) 
 JOIN dbo.subgenero ON dbo.libro.iIdSubGenero = dbo.subgenero.iIdSubgenero)
 WHERE iIdLibro = @id AND bExiste = 1
